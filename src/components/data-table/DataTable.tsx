@@ -28,6 +28,9 @@ import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { FilterComponent } from "./FilterComponent";
+import { BudgetSheet } from "../form/BudgetForm";
+import { BudgetResponse } from "@/types/Budget";
+import { dummyCategories } from "@/lib/mock-data";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -50,6 +53,8 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [appliedFilters, setAppliedFilters] = useState<FilterCondition[]>([]);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [editBudget, setEditBudget] = useState<BudgetResponse | null>(null);
 
   const table = useReactTable({
     data: filterDataByConditions(data, appliedFilters),
@@ -122,11 +127,25 @@ export function DataTable<TData, TValue>({
           <FilterComponent onApplyFilter={setAppliedFilters} />
         </div>
 
-        <Button size="sm" className="cursor-pointer">
+        <Button
+          size="sm"
+          className="cursor-pointer"
+          onClick={() => setIsSheetOpen(true)}
+        >
           <Plus className="mr-2 h-4 w-4" />
           Add New Budget
         </Button>
       </div>
+
+      <BudgetSheet
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+        categories={dummyCategories}
+        onSubmit={(data) => {
+          console.log("Budget submitted:", data);
+          // Handle your API call here
+        }}
+      />
 
       <div className="overflow-hidden rounded-md border">
         <Table>
@@ -156,7 +175,14 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      onClick={() => {
+                        console.log(cell.row.original)
+                        setEditBudget(cell.row.original as BudgetResponse);
+                        setIsSheetOpen(true);
+                      }}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

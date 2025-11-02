@@ -1,10 +1,8 @@
 "use client";
 
 import { BudgetTable } from "@/components/data-table/budget/BudgetTable";
-import { Button } from "@/components/ui/button";
 import { getBudgetData } from "@/lib/mock-data";
 import { BudgetResponse } from "@/types/Budget";
-import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function BudgetsPage() {
@@ -16,7 +14,6 @@ export default function BudgetsPage() {
 
   return (
     <div className="@container/main flex mx-auto p-4 space-y-4 flex-col">
-      {/* <div className="container mx-auto py-4 space-y-4"> */}
       <div>
         <h1 className="text-3xl font-bold">Budgets</h1>
         <p className="text-muted-foreground">
@@ -25,7 +22,6 @@ export default function BudgetsPage() {
       </div>
 
       <BudgetTable data={data} />
-      {/* </div> */}
     </div>
   );
 }

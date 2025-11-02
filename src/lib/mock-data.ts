@@ -1,6 +1,6 @@
 // lib/mock-data.ts
 
-import { BudgetResponse } from "@/types/Budget";
+import { BudgetCategoryResponse, BudgetResponse } from "@/types/Budget";
 
 const baseDate = new Date("2024-11-01");
 
@@ -284,5 +284,51 @@ export const mockBudgets: BudgetResponse[] = [
     budgetCategoryName: "Bonus",
     budgetCategoryId: "cat-12",
     createdAt: getDateOffset(0),
+  },
+];
+
+// Dummy categories
+export const dummyCategories: BudgetCategoryResponse[] = [
+  {
+    id: "cat-1",
+    name: "Groceries",
+    notes: "Food and household items",
+    budgetType: "EXPENSE",
+    lastModifiedAt: "2025-10-15T10:30:00",
+  },
+  {
+    id: "cat-2",
+    name: "Salary",
+    notes: "Monthly income",
+    budgetType: "INCOME",
+    lastModifiedAt: "2025-10-01T09:00:00",
+  },
+  {
+    id: "cat-3",
+    name: "Transportation",
+    notes: "Gas, public transport",
+    budgetType: "EXPENSE",
+    lastModifiedAt: "2025-10-10T14:20:00",
+  },
+  {
+    id: "cat-4",
+    name: "Emergency Fund",
+    notes: "Rainy day savings",
+    budgetType: "SAVINGS",
+    lastModifiedAt: "2025-09-20T11:00:00",
+  },
+  {
+    id: "cat-5",
+    name: "Stock Portfolio",
+    notes: "Investment account",
+    budgetType: "INVESTMENT",
+    lastModifiedAt: "2025-10-05T16:45:00",
+  },
+  {
+    id: "cat-6",
+    name: "Entertainment",
+    notes: "Movies, games, hobbies",
+    budgetType: "EXTRA",
+    lastModifiedAt: "2025-10-12T19:30:00",
   },
 ];

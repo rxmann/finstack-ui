@@ -2,8 +2,8 @@
 
 import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,9 +11,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
-import { SidebarTrigger, useSidebar } from "./ui/sidebar";
+import { SidebarTrigger, useSidebar } from "../ui/sidebar";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();

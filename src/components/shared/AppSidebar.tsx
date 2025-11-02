@@ -21,7 +21,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-} from "./ui/sidebar";
+} from "../ui/sidebar";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -29,8 +29,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { SidebarNavLink } from "./SidebarNavLink";
+} from "../ui/dropdown-menu";
+import { SidebarNavLink } from "../SidebarNavLink";
 
 const sidebarItems = [
   {

@@ -14,9 +14,13 @@ import {
 } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { SidebarTrigger, useSidebar } from "../ui/sidebar";
+import { useAuth } from "../providers/AuthProvider";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+
+  const { user } = useAuth();
+
   return (
     <nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
       {/* LEFT */}
@@ -63,7 +67,7 @@ const Navbar = () => {
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent sideOffset={10}>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer">
               <User className="h-[1.2rem] w-[1.2rem] mr-2" />

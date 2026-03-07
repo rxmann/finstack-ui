@@ -1,31 +1,59 @@
-import { GalleryVerticalEnd } from "lucide-react";
-import { SignupForm } from "@/components/form/SignupForm";
+'use client';
 
-export default function SignupPage() {
+import {z} from "zod";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {useRouter} from "next/navigation";
+import {registerUser} from "@/lib/auth.api";
+
+const signupSchema = z.object({
+    username: z.string().min(4, { message: "Invalid username." }),
+    email: z.string().email({ message: "Invalid email address" }),
+    password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+});
+
+type SignupFormValues = z.infer<typeof signupSchema>;
+
+export default function SignupForm() {
+    const router = useRouter();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignupFormValues>({
+        resolver: zodResolver(signupSchema),
+    });
+
+    const onSubmit = async (data: SignupFormValues) => {
+        try {
+            await registerUser(data);
+            router.push("/login");
+        } catch (error) {
+            console.error("Signup failed:", error);
+        }
+    };
+
     return (
-        <div className="grid min-h-svh lg:grid-cols-2">
-            <div className="flex flex-col gap-4 p-6 md:p-10">
-                <div className="flex justify-center gap-2 md:justify-start">
-                    <a href="#" className="flex items-center gap-2 font-medium">
-                        <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                            <GalleryVerticalEnd className="size-4" />
-                        </div>
-                        Acme Inc.
-                    </a>
-                </div>
-                <div className="flex flex-1 items-center justify-center">
-                    <div className="w-full max-w-xs">
-                        <SignupForm />
-                    </div>
-                </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+            <div>
+                <Label htmlFor="username">Username</Label>
+                <Input id="username" type="username" {...register("username")} />
+                {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
             </div>
-            <div className="relative hidden bg-muted lg:block">
-                <img
-                    src="/placeholder.svg"
-                    alt="Image"
-                    className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                />
+            <div>
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" {...register("email")} />
+                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
-        </div>
-    )
+            <div>
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" {...register("password")} />
+                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+            </div>
+            {/* Add more fields as needed */}
+            <Button type="submit" disabled={isSubmitting} className="w-full">
+                {isSubmitting ? "Signing up..." : "Sign Up"}
+            </Button>
+        </form>
+    );
 }

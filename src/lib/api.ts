@@ -1,9 +1,6 @@
 import axios from "axios";
 
-const baseURL =
-  typeof window === "undefined"
-    ? process.env.NEXT_PUBLIC_API_BASE_URL + "/api/v1"
-    : "/api/v1";
+const baseURL= process.env.NEXT_PUBLIC_API_BASE_URL + "/api/v1"
 
 export const api = axios.create({
   baseURL,
@@ -21,4 +18,3 @@ api.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-

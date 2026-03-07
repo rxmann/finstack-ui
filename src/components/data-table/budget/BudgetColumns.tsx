@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { BudgetResponse } from "@/types/Budget";
+import { BudgetResponse } from "@/types/budget.types";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -85,7 +85,7 @@ export const budgetColumns: ColumnDef<BudgetResponse>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: "budgetDate",
     header: ({ column }) => (
       <div className="flex">
         <Button

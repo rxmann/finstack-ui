@@ -5,6 +5,7 @@
 import {DashboardAnalyticsResponse} from "@/types/Dashboard";
 import {api} from "@/lib/api";
 
+// API Service
 export async function getDashboardAnalytics(
     filter: "THIS_WEEK" | "THIS_MONTH" | "THIS_QUARTER" | "THIS_YEAR"
 ): Promise<DashboardAnalyticsResponse | null> {

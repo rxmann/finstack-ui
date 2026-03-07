@@ -1,6 +1,5 @@
 // lib/mock-data.ts
 
-import { CardData } from "@/components/DashboardSectionCard";
 import { BudgetCategoryResponse, BudgetResponse } from "@/types/Budget";
 
 const baseDate = new Date("2024-11-01");
@@ -331,48 +330,5 @@ export const dummyCategories: BudgetCategoryResponse[] = [
     notes: "Movies, games, hobbies",
     budgetType: "EXTRA",
     lastModifiedAt: "2025-10-12T19:30:00",
-  },
-];
-
-export const dashboardCards: CardData[] = [
-  {
-    label: "Total Budget",
-    value: "$5,250.00",
-    change: 12.5,
-    description: "Trending up this month",
-    footer: "Budget allocation for this period",
-    trend: "up",
-  },
-  {
-    label: "Income",
-    value: "$8,500.00",
-    change: 8.2,
-    description: "Strong income this month",
-    footer: "Total earnings received",
-    trend: "up",
-  },
-  {
-    label: "Expense",
-    value: "$3,250.00",
-    change: -5.3,
-    description: "Down from last month",
-    footer: "Total spending this period",
-    trend: "down",
-  },
-  {
-    label: "Recurring Budgets",
-    value: "2",
-    change: 1,
-    description: "New today",
-    footer: "Payments auto added today",
-    trend: "up",
-  },
-  {
-    label: "Reminders Today",
-    value: "3",
-    change: 0,
-    description: "Pending actions",
-    footer: "Payments due today",
-    trend: "up",
   },
 ];

@@ -19,8 +19,9 @@ export const budgetSchema = z.object({
     }, "Amount must have max 13 integer and 2 decimal digits"),
   budgetDate: z.date(),
   budgetCategoryId: z.string().min(1, "Budget category is required"),
-  tags: z.string(),
+  tags: z.string().optional(),
   description: z
     .string()
-    .max(300, "Description must not exceed 300 characters"),
+    .max(300, "Description must not exceed 300 characters")
+    .optional(),
 });

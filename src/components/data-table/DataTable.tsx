@@ -28,7 +28,10 @@ import {filterDataByConditions} from "@/utils/budget.utils";
 export function DataTable<TData, TValue>({
                                              columns,
                                              data,
-                                             categories
+                                             onAddClick,
+                                             onManageCategories,
+                                             onEdit,
+                                             onDelete
                                          }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnSizing, setColumnSizing] = useState<ColumnSizingState>({});
@@ -36,8 +39,6 @@ export function DataTable<TData, TValue>({
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = useState({});
     const [appliedFilters, setAppliedFilters] = useState<FilterCondition[]>([]);
-    const [isSheetOpen, setIsSheetOpen] = useState(false);
-    const [editBudget, setEditBudget] = useState<BudgetResponse | null>(null);
 
     const table = useReactTable({
         data: filterDataByConditions(data, appliedFilters),
@@ -56,6 +57,10 @@ export function DataTable<TData, TValue>({
             columnVisibility,
             rowSelection,
             columnSizing,
+        },
+        meta: {
+            onEdit,
+            onDelete,
         },
         onColumnSizingChange: setColumnSizing,
         columnResizeMode: "onChange",
@@ -77,26 +82,29 @@ export function DataTable<TData, TValue>({
                     <FilterComponent onApplyFilter={setAppliedFilters}/>
                 </div>
 
-                <Button
-                    size="sm"
-                    className="cursor-pointer"
-                    onClick={() => setIsSheetOpen(true)}
-                >
-                    <Plus className="mr-2 h-4 w-4"/>
-                    Add New Budget
-                </Button>
+                <div className="flex gap-2">
+                    {onManageCategories && (
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            className="cursor-pointer"
+                            onClick={onManageCategories}
+                        >
+                            Categories
+                        </Button>
+                    )}
+                    {onAddClick && (
+                        <Button
+                            size="sm"
+                            className="cursor-pointer"
+                            onClick={onAddClick}
+                        >
+                            <Plus className="mr-2 h-4 w-4"/>
+                            Add
+                        </Button>
+                    )}
+                </div>
             </div>
-
-            <BudgetSheet
-                open={isSheetOpen}
-                onOpenChange={setIsSheetOpen}
-                categories={categories}
-                budget={editBudget}
-                onSubmit={(data) => {
-                    console.log("Budget submitted:", data);
-                    // Handle your API call here
-                }}
-            />
 
             <div className="overflow-hidden rounded-md border">
                 <Table>
@@ -124,15 +132,12 @@ export function DataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
+                                    onClick={() => table.options.meta?.onEdit?.(row.original)}
+                                    className="cursor-pointer hover:bg-muted"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell
                                             key={cell.id}
-                                            onClick={() => {
-                                                console.log(cell.row.original)
-                                                setEditBudget(cell.row.original as BudgetResponse);
-                                                setIsSheetOpen(true);
-                                            }}
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,

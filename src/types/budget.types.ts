@@ -2,8 +2,15 @@
 // API RESPONSE TYPES
 // ============================================================================
 
-import {ColumnDef} from "@tanstack/react-table";
+import {ColumnDef, RowData} from "@tanstack/react-table";
 import {BudgetCategoryResponse} from "@/types/budget-categories.types";
+
+declare module "@tanstack/react-table" {
+  interface TableMeta<TData extends RowData> {
+    onEdit?: (record: TData) => void;
+    onDelete?: (record: TData) => void;
+  }
+}
 
 export interface BudgetResponse {
     id: string;
@@ -33,15 +40,19 @@ export type GetBudgetsResponse = BudgetResponse[];
 export interface CreateBudgetRequest {
     name: string;
     amount: number;
-    budgetType: BudgetType;
     budgetCategoryId: string;
+    budgetDate: string; // ISO date string or Date
+    receiptUrl?: string;
+    tags?: string[];
 }
 
 export interface UpdateBudgetRequest {
     name?: string;
     amount?: number;
-    budgetType?: BudgetType;
     budgetCategoryId?: string;
+    budgetDate?: string;
+    receiptUrl?: string;
+    tags?: string[];
 }
 
 // ============================================================================
@@ -65,12 +76,19 @@ export interface BudgetTableProps {
     isLoading?: boolean;
     error?: string | null;
     onRefresh?: () => void;
+    onAddClick?: () => void;
+    onManageCategories?: () => void;
+    onEdit?: (record: BudgetResponse) => void;
+    onDelete?: (record: BudgetResponse) => void;
 }
 
 export interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
-    categories: BudgetCategoryResponse[];
+    onAddClick?: () => void;
+    onManageCategories?: () => void;
+    onEdit?: (record: TData) => void;
+    onDelete?: (record: TData) => void;
 }
 
 

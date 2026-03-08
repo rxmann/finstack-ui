@@ -10,3 +10,9 @@ export interface BudgetCategoryResponse {
 }
 
 export type GetBudgetsCategoriesResponse = BudgetCategoryResponse[];
+
+export interface BudgetCategoryRequest {
+    name: string;
+    notes?: string;
+    budgetType: BudgetType;
+}

@@ -8,6 +8,10 @@ export function BudgetTable({
                                 isLoading,
                                 error,
                                 onRefresh,
+                                onAddClick,
+                                onManageCategories,
+                                onEdit,
+                                onDelete
                             }: BudgetTableProps) {
     if (error) {
         return (
@@ -37,5 +41,5 @@ export function BudgetTable({
         );
     }
 
-    return <DataTable columns={budgetColumns} categories={budgetCategories} data={data}/>;
+    return <DataTable columns={budgetColumns} onAddClick={onAddClick} onManageCategories={onManageCategories} onEdit={onEdit} onDelete={onDelete} data={data}/>;
 }

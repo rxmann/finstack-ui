@@ -115,8 +115,9 @@ export const budgetColumns: ColumnDef<BudgetResponse>[] = [
     id: "actions",
     size: 20,
     header: () => <div className="text-center">ACTIONS</div>,
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const payment = row.original;
+      const meta = table.options.meta;
       return (
         <div className="flex justify-center">
           <DropdownMenu>
@@ -129,16 +130,18 @@ export const budgetColumns: ColumnDef<BudgetResponse>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
-                View{" "}
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+
+              <DropdownMenuItem 
+                className="cursor-pointer"
+                onClick={() => meta?.onEdit?.(payment)}
+              >
                 Edit{" "}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer"
                 variant="destructive"
+                onClick={() => meta?.onDelete?.(payment)}
               >
                 Delete
               </DropdownMenuItem>

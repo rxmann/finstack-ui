@@ -1,0 +1,1919 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Budgets App: API Documentation",
+        "description": "Budgets App: API Documentation"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api/v1",
+            "description": "local"
+        }
+    ],
+    "security": [
+        {
+            "cookieAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Recurring Budget",
+            "description": "Recurring Budget management endpoints"
+        },
+        {
+            "name": "Recurring Budget"
+        },
+        {
+            "name": "Auth"
+        },
+        {
+            "name": "Budget",
+            "description": "budget management endpoints"
+        },
+        {
+            "name": "Budget Category",
+            "description": "Budget Categories management endpoints"
+        },
+        {
+            "name": "Auth",
+            "description": "Authentication endpoints"
+        },
+        {
+            "name": "Budget Category"
+        },
+        {
+            "name": "DashboardAnalytics",
+            "description": "Dashboard analytics endpoints"
+        },
+        {
+            "name": "Budget"
+        }
+    ],
+    "paths": {
+        "/payment-reminders/{id}": {
+            "put": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "updatePaymentReminder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PaymentReminderRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentReminderResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "deletePaymentReminder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/budgets/{budgetId}": {
+            "get": {
+                "tags": [
+                    "Budget"
+                ],
+                "operationId": "getBudgetById",
+                "parameters": [
+                    {
+                        "name": "budgetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Budget"
+                ],
+                "operationId": "updateBudget",
+                "parameters": [
+                    {
+                        "name": "budgetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BudgetRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Budget"
+                ],
+                "operationId": "deleteBudget",
+                "parameters": [
+                    {
+                        "name": "budgetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/budgets/recurring/{id}": {
+            "get": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "getRecurringBudget",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "updateRecurringBudget",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecurringBudgetRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "deleteRecurringBudget",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/budgets/categories/{categoryId}": {
+            "get": {
+                "tags": [
+                    "Budget Category"
+                ],
+                "operationId": "getCategoryById",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetCategoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Budget Category"
+                ],
+                "operationId": "updateCategory",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BudgetCategoryRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetCategoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Budget Category"
+                ],
+                "operationId": "deleteCategory",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/payment-reminders": {
+            "get": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "getAllPaymentReminders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PaymentReminderResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "createPaymentReminder",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PaymentReminderRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentReminderResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/budgets": {
+            "get": {
+                "tags": [
+                    "Budget"
+                ],
+                "operationId": "getAllBudgets",
+                "parameters": [
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BudgetResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Budget"
+                ],
+                "operationId": "createBudget",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BudgetRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/budgets/recurring": {
+            "get": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "getRecurringBudgets",
+                "parameters": [
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "createRecurringBudget",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecurringBudgetRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/budgets/categories": {
+            "get": {
+                "tags": [
+                    "Budget Category"
+                ],
+                "operationId": "getAllCategories",
+                "parameters": [
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BudgetCategoryResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Budget Category"
+                ],
+                "operationId": "createCategory",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BudgetCategoryRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BudgetCategoryResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register new User.",
+                "operationId": "register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthenticationResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthenticationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthenticationResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    }
+                ]
+            }
+        },
+        "/payment-reminders/{id}/snooze": {
+            "patch": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "snoozeReminder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentReminderResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payment-reminders/{id}/acknowledge": {
+            "patch": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "acknowledgeReminder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AcknowledgeReminderRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentReminderResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/budgets/recurring/{id}/enable": {
+            "patch": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "enableRecurringBudget",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/budgets/recurring/{id}/disable": {
+            "patch": {
+                "tags": [
+                    "Recurring Budget"
+                ],
+                "operationId": "disableRecurringBudget",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurringBudgetResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getUsers",
+                "parameters": [
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/profile": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getUserProfile",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payment-reminders/upcoming": {
+            "get": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "getUpcomingPaymentReminders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PaymentReminderResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payment-reminders/notifications": {
+            "get": {
+                "tags": [
+                    "payment-reminder-controller"
+                ],
+                "operationId": "getRemindersToNotify",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PaymentReminderResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/analytics": {
+            "get": {
+                "tags": [
+                    "DashboardAnalytics"
+                ],
+                "operationId": "getDashboardAnalytics",
+                "parameters": [
+                    {
+                        "name": "requestDTO",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DashboardRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DashboardResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/analytics/expense-distribution": {
+            "get": {
+                "tags": [
+                    "DashboardAnalytics"
+                ],
+                "operationId": "getExpenseDistribution",
+                "parameters": [
+                    {
+                        "name": "requestDTO",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DashboardRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ExpenseDistributionMetric"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/analytics/cashflow": {
+            "get": {
+                "tags": [
+                    "DashboardAnalytics"
+                ],
+                "operationId": "getCashflowAnalytics",
+                "parameters": [
+                    {
+                        "name": "requestDTO",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DashboardRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CashFlowResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/analytics/budget-composition": {
+            "get": {
+                "tags": [
+                    "DashboardAnalytics"
+                ],
+                "operationId": "getBudgetSplits",
+                "parameters": [
+                    {
+                        "name": "requestDTO",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/DashboardRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TreeMapResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PaymentReminderRequest": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "categoryId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "reminderName": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "frequency": {
+                        "type": "string",
+                        "enum": [
+                            "DAILY",
+                            "WEEKLY",
+                            "MONTHLY",
+                            "YEARLY",
+                            "QUARTERLY",
+                            "ONE_TIME"
+                        ]
+                    },
+                    "nextDueDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "SNOOZED",
+                            "COMPLETED",
+                            "CANCELLED"
+                        ]
+                    }
+                },
+                "required": [
+                    "categoryId",
+                    "frequency",
+                    "id",
+                    "nextDueDate",
+                    "reminderName"
+                ]
+            },
+            "PaymentReminderResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "categoryName": {
+                        "type": "string"
+                    },
+                    "reminderName": {
+                        "type": "string"
+                    },
+                    "frequency": {
+                        "type": "string",
+                        "enum": [
+                            "DAILY",
+                            "WEEKLY",
+                            "MONTHLY",
+                            "YEARLY",
+                            "QUARTERLY",
+                            "ONE_TIME"
+                        ]
+                    },
+                    "nextDueDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "SNOOZED",
+                            "COMPLETED",
+                            "CANCELLED"
+                        ]
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "daysUntilDue": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "shouldNotifyToday": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "BudgetRequest": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "minimum": 0.01
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "minLength": 0
+                    },
+                    "budgetDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "receiptUrl": {
+                        "type": "string",
+                        "maxLength": 500,
+                        "minLength": 0
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "budgetCategoryId": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "required": [
+                    "amount",
+                    "budgetCategoryId",
+                    "budgetDate"
+                ]
+            },
+            "BudgetResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "budgetType": {
+                        "type": "string",
+                        "enum": [
+                            "INCOME",
+                            "EXPENSE",
+                            "SAVINGS",
+                            "INVESTMENT",
+                            "LOAN",
+                            "LEND",
+                            "EXTRA"
+                        ]
+                    },
+                    "budgetCategoryName": {
+                        "type": "string"
+                    },
+                    "budgetCategoryId": {
+                        "type": "string"
+                    },
+                    "budgetDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "RecurringBudgetRequest": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "budgetCategoryId": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "minimum": 0.01
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "frequency": {
+                        "type": "string",
+                        "enum": [
+                            "DAILY",
+                            "WEEKLY",
+                            "MONTHLY",
+                            "YEARLY",
+                            "QUARTERLY",
+                            "ONE_TIME"
+                        ]
+                    },
+                    "frequencyInterval": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "required": [
+                    "amount",
+                    "budgetCategoryId",
+                    "frequency",
+                    "frequencyInterval",
+                    "id",
+                    "name",
+                    "startDate"
+                ]
+            },
+            "RecurringBudgetResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "budgetCategoryId": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "frequency": {
+                        "type": "string"
+                    },
+                    "frequencyInterval": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "nextOccurrence": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "BudgetCategoryRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "notes": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "budgetType": {
+                        "type": "string",
+                        "enum": [
+                            "INCOME",
+                            "EXPENSE",
+                            "SAVINGS",
+                            "INVESTMENT",
+                            "LOAN",
+                            "LEND",
+                            "EXTRA"
+                        ]
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "budgetType",
+                    "isActive",
+                    "name",
+                    "notes"
+                ]
+            },
+            "BudgetCategoryResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "budgetType": {
+                        "type": "string",
+                        "enum": [
+                            "INCOME",
+                            "EXPENSE",
+                            "SAVINGS",
+                            "INVESTMENT",
+                            "LOAN",
+                            "LEND",
+                            "EXTRA"
+                        ]
+                    },
+                    "lastModifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "RegisterRequest": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "description": "Username to register.",
+                        "minLength": 1
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "description": "Unique email",
+                        "minLength": 1
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password of length 8",
+                        "maxLength": 2147483647,
+                        "minLength": 8
+                    }
+                },
+                "required": [
+                    "email",
+                    "password",
+                    "username"
+                ]
+            },
+            "AuthenticationResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthenticationRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AcknowledgeReminderRequest": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "minimum": 0.01
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "minLength": 0
+                    },
+                    "budgetDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "receiptUrl": {
+                        "type": "string",
+                        "maxLength": 500,
+                        "minLength": 0
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "required": [
+                    "amount",
+                    "budgetDate"
+                ]
+            },
+            "Pageable": {
+                "type": "object",
+                "properties": {
+                    "page": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 0
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                    },
+                    "sort": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Budget": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "type": "string"
+                    },
+                    "user": {},
+                    "budgetCategory": {
+                        "$ref": "#/components/schemas/BudgetCategory"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "budgetDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "receiptUrl": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "isRecurring": {
+                        "type": "boolean"
+                    },
+                    "recurringBudget": {
+                        "$ref": "#/components/schemas/RecurringBudget"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "BudgetCategory": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "budgetType": {
+                        "type": "string",
+                        "enum": [
+                            "INCOME",
+                            "EXPENSE",
+                            "SAVINGS",
+                            "INVESTMENT",
+                            "LOAN",
+                            "LEND",
+                            "EXTRA"
+                        ]
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "RecurringBudget": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "frequency": {
+                        "type": "string",
+                        "enum": [
+                            "DAILY",
+                            "WEEKLY",
+                            "MONTHLY",
+                            "YEARLY",
+                            "QUARTERLY",
+                            "ONE_TIME"
+                        ]
+                    },
+                    "frequencyInterval": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "nextOccurrence": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "passwordHash": {
+                        "type": "string"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "accountLocked": {
+                        "type": "boolean"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "providerId": {
+                        "type": "string"
+                    },
+                    "authProviderType": {
+                        "type": "string",
+                        "enum": [
+                            "GOOGLE",
+                            "GITHUB",
+                            "EMAIL"
+                        ]
+                    },
+                    "budgetCategories": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BudgetCategory"
+                        }
+                    },
+                    "budgets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Budget"
+                        }
+                    }
+                }
+            },
+            "UserResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "authProviderType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "DashboardRequest": {
+                "type": "object",
+                "properties": {
+                    "filter": {
+                        "type": "string",
+                        "enum": [
+                            "THIS_WEEK",
+                            "THIS_MONTH",
+                            "THIS_QUARTER",
+                            "THIS_YEAR"
+                        ]
+                    }
+                },
+                "required": [
+                    "filter"
+                ]
+            },
+            "DashboardResponse": {
+                "type": "object",
+                "properties": {
+                    "income": {
+                        "$ref": "#/components/schemas/MetricCard"
+                    },
+                    "expense": {
+                        "$ref": "#/components/schemas/MetricCard"
+                    },
+                    "recurring": {
+                        "$ref": "#/components/schemas/RecurringMetricCard"
+                    },
+                    "reminders": {
+                        "$ref": "#/components/schemas/ReminderMetricCard"
+                    },
+                    "net": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "MetricCard": {
+                "type": "object",
+                "properties": {
+                    "current": {
+                        "type": "number"
+                    },
+                    "previous": {
+                        "type": "number"
+                    },
+                    "trend": {
+                        "type": "string",
+                        "enum": [
+                            "Up",
+                            "Down",
+                            "Flat"
+                        ]
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "percentageChange": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "net": {
+                        "type": "number"
+                    }
+                }
+            },
+            "RecurringMetricCard": {
+                "type": "object",
+                "properties": {
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalSum": {
+                        "type": "number"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReminderMetricCard": {
+                "type": "object",
+                "properties": {
+                    "overdueCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "dueSoonCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalReminders": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "nextDueDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ExpenseDistributionMetric": {
+                "type": "object",
+                "properties": {
+                    "periodStr": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "period": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "CashFlowResponse": {
+                "type": "object",
+                "properties": {
+                    "dateRange": {
+                        "type": "string"
+                    },
+                    "period": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "incomeAmount": {
+                        "type": "number"
+                    },
+                    "expenseAmount": {
+                        "type": "number"
+                    }
+                }
+            },
+            "TreeMapResponse": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TreeNode"
+                        }
+                    }
+                }
+            },
+            "TreeNode": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "number"
+                    },
+                    "percentage": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "cookieAuth": {
+                "type": "apiKey",
+                "name": "access_token",
+                "in": "cookie"
+            }
+        }
+    }
+}

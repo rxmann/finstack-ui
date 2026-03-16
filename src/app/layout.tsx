@@ -38,15 +38,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <SidebarProvider defaultOpen={defaultOpen}>
-              <AppSidebar />
-              <main className="w-full px-10">
-                <Navbar />
-                <div className="w-full">{children}</div>
-              </main>
-            </SidebarProvider>
-          </AuthProvider>
+          {/* <AuthProvider> */}
+          <SidebarProvider defaultOpen={defaultOpen}>
+            <AppSidebar />
+            <main className="w-full px-10">
+              <Navbar />
+              <div className="w-full">{children}</div>
+            </main>
+          </SidebarProvider>
+          {/* </AuthProvider> */}
         </ThemeProvider>
       </body>
     </html>
